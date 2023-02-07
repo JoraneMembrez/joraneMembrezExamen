@@ -584,7 +584,7 @@ const parseData = (rawData, index)=>{
         photo: rawData.results[index].picture.large
     };
     usersCompteur.push(index);
-    compteur.textContent = `${index} people are here`;
+    compteur.textContent = `${index + 1}/20 people are here`;
     return data;
 };
 
@@ -603,6 +603,7 @@ class User {
     #present;
     #generUtilisateur;
     constructor(data){
+        this.compteur = 0;
         this.#titre = data.titre;
         this.#prenom = data.prenom;
         this.#nom = data.nom;
@@ -614,13 +615,15 @@ class User {
         this.#present = false;
         this.#generUtilisateur = this.#generer();
         this.changePresent = document.querySelector(".user").addEventListener("click", (e)=>{
-            console.log("Ca marche ? ");
+            const compteur = document.querySelector(".counter");
             if (!this.#present) {
                 this.#present = true;
-                e.target.style.background = "#06d6a0";
+                e.currentTarget.style.background = "#06d6a0";
+                this.compteur++;
+                compteur.textContent = `${this.compteur + 1}/20 people are here`;
             } else if (this.#present) {
                 this.#present = false;
-                e.target.style.background = "#ffffff";
+                e.currentTarget.style.background = "#ffffff";
             }
         });
     }
@@ -691,14 +694,6 @@ class User {
     parentElement.appendChild(this.#generer);
     return this;
     // this.#users.push() */ }
-    changePresence() {
-        this.#present = true;
-        this.#present = false;
-    }
-    set present(value) {
-        this.#present = value;
-        return value;
-    }
 }
 exports.default = User;
 

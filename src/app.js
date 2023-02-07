@@ -26,6 +26,6 @@ const parseData = (rawData, index) => {
     photo: rawData.results[index].picture.large,
   };
   usersCompteur.push(index);
-  compteur.textContent = `${index} people are here`;
+  compteur.textContent = `${index + 1}/20 people are here`;
   return data;
 };
