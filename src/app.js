@@ -1,8 +1,6 @@
 import User from "./User.js";
 
-const usersCompteur = [];
 const main = document.querySelector("main");
-const compteur = document.querySelector(".counter");
 
 fetch(`https://randomuser.me/api/?results=20`).then(function (res) {
   console.log(res);
@@ -25,7 +23,6 @@ const parseData = (rawData, index) => {
     email: rawData.results[index].email,
     photo: rawData.results[index].picture.large,
   };
-  usersCompteur.push(index);
-  compteur.textContent = `${index + 1}/20 people are here`;
+
   return data;
 };
